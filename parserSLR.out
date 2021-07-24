@@ -1,0 +1,127 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> L EQUAL R
+Rule 2     S -> R
+Rule 3     L -> TIMES R
+Rule 4     L -> ID
+Rule 5     R -> L
+
+Terminals, with rules where they appear
+
+EQUAL                : 1
+ID                   : 4
+TIMES                : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+L                    : 1 5
+R                    : 1 2 3
+S                    : 0
+
+Parsing method: SLR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . L EQUAL R
+    (2) S -> . R
+    (3) L -> . TIMES R
+    (4) L -> . ID
+    (5) R -> . L
+
+    TIMES           shift and go to state 4
+    ID              shift and go to state 5
+
+    S                              shift and go to state 1
+    L                              shift and go to state 2
+    R                              shift and go to state 3
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> L . EQUAL R
+    (5) R -> L .
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+    EQUAL           shift and go to state 6
+    $end            reduce using rule 5 (R -> L .)
+
+  ! EQUAL           [ reduce using rule 5 (R -> L .) ]
+
+
+state 3
+
+    (2) S -> R .
+
+    $end            reduce using rule 2 (S -> R .)
+
+
+state 4
+
+    (3) L -> TIMES . R
+    (5) R -> . L
+    (3) L -> . TIMES R
+    (4) L -> . ID
+
+    TIMES           shift and go to state 4
+    ID              shift and go to state 5
+
+    R                              shift and go to state 7
+    L                              shift and go to state 8
+
+state 5
+
+    (4) L -> ID .
+
+    EQUAL           reduce using rule 4 (L -> ID .)
+    $end            reduce using rule 4 (L -> ID .)
+
+
+state 6
+
+    (1) S -> L EQUAL . R
+    (5) R -> . L
+    (3) L -> . TIMES R
+    (4) L -> . ID
+
+    TIMES           shift and go to state 4
+    ID              shift and go to state 5
+
+    L                              shift and go to state 8
+    R                              shift and go to state 9
+
+state 7
+
+    (3) L -> TIMES R .
+
+    EQUAL           reduce using rule 3 (L -> TIMES R .)
+    $end            reduce using rule 3 (L -> TIMES R .)
+
+
+state 8
+
+    (5) R -> L .
+
+    $end            reduce using rule 5 (R -> L .)
+    EQUAL           reduce using rule 5 (R -> L .)
+
+
+state 9
+
+    (1) S -> L EQUAL R .
+
+    $end            reduce using rule 1 (S -> L EQUAL R .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for EQUAL in state 2 resolved as shift
