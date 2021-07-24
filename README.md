@@ -4,6 +4,10 @@ Trabalho da disciplina Compiladores 2021.1
 
 Data de entrega 23/07/21
 
+Aluno: Rafael Duarte Campbell de Medeiros
+
+Matricula: 117 031 036
+
 ## Introdução 
 
 A gramática 
